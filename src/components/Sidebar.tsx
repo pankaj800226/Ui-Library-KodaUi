@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Divider from "@mui/material/Divider";
+import { FiLayers } from "react-icons/fi";
 
 /* =================================================
    Types
@@ -50,15 +51,8 @@ const Sidebar = () => {
     { name: "Cards", path: "/card" },
     { name: "Forms", path: "/forms" },
     { name: "Cart", path: "/cart" },
-    { name: "Orders", path: "/orders" },
-    { name: "Products", path: "/products" },
-    { name: "Customers", path: "/customers" },
-    { name: "Analytics", path: "/analytics" },
-    { name: "Reports", path: "/reports" },
-    { name: "Invoices", path: "/invoices" },
-    { name: "Coupons", path: "/coupons" },
-    { name: "Settings", path: "/settings" },
-    { name: "Profile", path: "/profile" },
+    { name: "Pricing Plane", path: "/price" },
+
   ];
 
   return (
@@ -144,9 +138,14 @@ const SidebarContent = ({ links, close }: SidebarContentProps) => {
 
   return (
     <>
-      <h2 className="text-xl font-bold mb-6 bg-gradient-to-r from-pink-500 to-indigo-500 bg-clip-text text-transparent">
-        UI Library
-      </h2>
+      <Link to={'/'}>
+        <div className="flex items-center gap-2">
+          <div className="bg-blue-600 p-1.5 rounded-lg shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+            <FiLayers className="text-white" size={20} />
+          </div>
+          <h1 className="text-2xl font-black text-white tracking-tighter italic">Koda<span className="text-blue-500">UI</span></h1>
+        </div>
+      </Link>
 
       <SidebarDivider label="Components" />
 
@@ -166,7 +165,7 @@ const SidebarContent = ({ links, close }: SidebarContentProps) => {
       <SidebarDivider label="E-commerce cart" />
 
       <nav className="flex flex-col gap-2">
-        {links.slice(2, 6).map((item) => (
+        {links.slice(2, 3).map((item) => (
           <Link
             key={item.path}
             to={item.path}
@@ -178,10 +177,10 @@ const SidebarContent = ({ links, close }: SidebarContentProps) => {
         ))}
       </nav>
 
-      <SidebarDivider label="More" />
+      <SidebarDivider label="Pricing" />
 
       <nav className="flex flex-col gap-2">
-        {links.slice(6).map((item) => (
+        {links.slice(3).map((item) => (
           <Link
             key={item.path}
             to={item.path}

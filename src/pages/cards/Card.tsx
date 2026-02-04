@@ -3,6 +3,8 @@ import FourCard from "./FourCard";
 import OneCard from "./OneCard";
 import SecondCard from "./SecondCard";
 import ThirdCard from "./ThirdCard";
+import SixCard from "./SixCard";
+
 
 const Card = () => {
     return (
@@ -24,6 +26,10 @@ const Card = () => {
 
             <div className="w-[90%]">
                 <FiveCard />
+            </div>
+
+              <div className="w-[90%]">
+                <SixCard />
             </div>
         </div>
     );

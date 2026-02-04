@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FiTrash2, FiShoppingCart, FiCopy } from "react-icons/fi";
+import {FiCopy, FiCheck } from "react-icons/fi";
 
 const OneCart = () => {
   const [liked, setLiked] = useState(false);
@@ -9,220 +8,131 @@ const OneCart = () => {
   const [added, setAdded] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  // --- Functions for Preview ---
   const handleAdd = () => setQuantity(q => q + 1);
   const handleRemove = () => setQuantity(q => (q > 1 ? q - 1 : 1));
-
   const handleAddToCart = () => {
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };
 
-  const code = `import { useState } from "react";
+  const sourceCode = `import { useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FiTrash2, FiShoppingCart } from "react-icons/fi";
 
-const OneCart = () => {
+const CartItem = () => {
   const [liked, setLiked] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
-  const handleAdd = () => setQuantity(q => q + 1);
-  const handleRemove = () => setQuantity(q => (q > 1 ? q - 1 : 1));
-
-  const handleAddToCart = () => {
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
-
   return (
-    <div className="min-h-screen bg-[#020617] px-4 py-10 flex justify-center">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-4xl bg-neutral-900 border border-neutral-800 rounded-2xl shadow-lg"
-      >
-        <div className="flex flex-col md:flex-row gap-4 p-4">
-          <img
-            src="https://images.unsplash.com/photo-1668371679302-a8ec781e876e"
-            alt="Product"
-            className="w-full md:w-32 h-52 md:h-44 rounded-xl object-cover border border-neutral-800"
-          />
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="w-full max-w-md bg-neutral-900 border border-neutral-800 rounded-3xl p-5 shadow-2xl"
+    >
+      <div className="flex gap-5">
+        <img
+          src="https://images.unsplash.com/photo-1668371679302-a8ec781e876e"
+          alt="Product"
+          className="w-24 h-24 rounded-2xl object-cover border border-white/5 shadow-lg"
+        />
 
-          <div className="flex-1 flex flex-col justify-between">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="text-lg font-semibold text-white">
-                  Awesome Product
-                </h3>
-                <p className="text-sm text-neutral-400 mt-1">
-                  ₹4,999 • In Stock
-                </p>
-              </div>
-
-              <button
-                onClick={() => setLiked(!liked)}
-                className={\`transition \${
-                  liked
-                    ? "text-red-500"
-                    : "text-neutral-400 hover:text-red-500"
-                }\`}
-              >
-                {liked ? <AiFillHeart size={22} /> : <AiOutlineHeart size={22} />}
-              </button>
+        <div className="flex-1 flex flex-col justify-between">
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="text-white font-bold tracking-tight">Koda Air Max</h3>
+              <p className="text-blue-500 font-black text-sm mt-1">₹4,999</p>
             </div>
+            <button onClick={() => setLiked(!liked)} className="text-neutral-500 hover:text-red-500 transition-colors">
+              {liked ? <AiFillHeart className="text-red-500" /> : <AiOutlineHeart />}
+            </button>
+          </div>
 
-            <div className="flex items-center gap-3 mt-4">
-              <button
-                onClick={handleRemove}
-                className="w-8 h-8 rounded-md bg-neutral-800 hover:bg-neutral-700 text-white font-bold"
-              >
-                -
-              </button>
-
-              <span className="text-white font-semibold">
-                {quantity}
-              </span>
-
-              <button
-                onClick={handleAdd}
-                className="w-8 h-8 rounded-md bg-neutral-800 hover:bg-neutral-700 text-white font-bold"
-              >
-                +
-              </button>
-            </div>
-
-            <div className="flex flex-col sm:flex-row sm:justify-between gap-3 mt-5">
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                onClick={handleAddToCart}
-                className={\`flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold transition \${
-                  added
-                    ? "bg-green-600 text-white"
-                    : "bg-yellow-500 text-black hover:bg-yellow-400"
-                }\`}
-              >
-                <FiShoppingCart />
-                {added ? "Added" : "Add to Cart"}
-              </motion.button>
-
-              <button className="flex items-center gap-1 text-sm text-neutral-400 hover:text-red-500">
-                <FiTrash2 /> Remove
-              </button>
-            </div>
+          <div className="flex items-center justify-between mt-4">
+             <div className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-2 py-1 border border-white/5">
+                <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="text-white hover:text-blue-400 p-1">-</button>
+                <span className="text-white text-sm font-mono font-bold w-4 text-center">{quantity}</span>
+                <button onClick={() => setQuantity(q => q + 1)} className="text-white hover:text-blue-400 p-1">+</button>
+             </div>
+             <button className="text-neutral-500 hover:text-red-400 transition-colors">
+                <FiTrash2 size={16} />
+             </button>
           </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+
+      <motion.button
+        whileTap={{ scale: 0.97 }}
+        onClick={() => { setAdded(true); setTimeout(() => setAdded(false), 1500); }}
+        className={\`w-full mt-5 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all \${
+          added ? "bg-green-600 text-white" : "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+        }\`}
+      >
+        {added ? "Success!" : "Add to Cart"}
+      </motion.button>
+    </motion.div>
   );
 };
 
-export default OneCart;`;
-
+export default CartItem;`;
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
+    await navigator.clipboard.writeText(sourceCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
 
   return (
-    <div className="bg-[#020617] px-4 py-10 flex justify-center">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-4xl bg-neutral-900 border border-neutral-800 rounded-2xl shadow-lg"
-      >
-        {/* ===== CART ITEM ===== */}
-        <div className="flex flex-col md:flex-row gap-4 p-4">
-          {/* IMAGE */}
-          <img
-            src="https://images.unsplash.com/photo-1668371679302-a8ec781e876e"
-            alt="Product"
-            className="w-full md:w-28 h-40 md:h-36 rounded-xl object-cover border border-neutral-800"
-          />
-
-          {/* CONTENT */}
-          <div className="flex-1 flex flex-col justify-between">
-            {/* TOP */}
-            <div className="flex justify-between items-start gap-3">
-              <div>
-                <h3 className="text-lg font-semibold text-white">
-                  Awesome Product
-                </h3>
-                <p className="text-sm text-neutral-400 mt-1">
-                  ₹4,999 • In Stock
-                </p>
+    <div className="w-full max-w-4xl mx-auto my-10 bg-neutral-900/50 border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl">
+      
+      {/* 1. COMPONENT PREVIEW AREA */}
+      <div className="p-8 md:p-16 flex items-center justify-center bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px]">
+        {/* --- Actual Preview Component --- */}
+        <div className="w-full max-w-md bg-neutral-900 border border-neutral-800 rounded-3xl p-5 shadow-2xl relative">
+            <div className="flex gap-5">
+              <img
+                src="https://images.unsplash.com/photo-1668371679302-a8ec781e876e"
+                className="w-24 h-24 rounded-2xl object-cover border border-white/5"
+              />
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="flex justify-between">
+                   <h3 className="text-white font-bold">Koda Air Max</h3>
+                   <button onClick={() => setLiked(!liked)} className="text-neutral-500">
+                      {liked ? <AiFillHeart className="text-red-500" /> : <AiOutlineHeart />}
+                   </button>
+                </div>
+                <div className="flex items-center justify-between">
+                   <div className="flex items-center gap-3 bg-neutral-800 p-1 rounded-xl">
+                      <button onClick={handleRemove} className="px-2">-</button>
+                      <span className="text-sm font-mono">{quantity}</span>
+                      <button onClick={handleAdd} className="px-2">+</button>
+                   </div>
+                   <p className="text-blue-500 font-bold">₹4,999</p>
+                </div>
               </div>
-
-              <button
-                onClick={() => setLiked(!liked)}
-                className={`transition ${liked
-                  ? "text-red-500"
-                  : "text-neutral-400 hover:text-red-500"
-                  }`}
-              >
-                {liked ? <AiFillHeart size={22} /> : <AiOutlineHeart size={22} />}
-              </button>
             </div>
-
-            {/* QUANTITY */}
-            <div className="flex items-center gap-3 mt-3">
-              <button
-                onClick={handleRemove}
-                className="w-8 h-8 rounded-md bg-neutral-800 hover:bg-neutral-700 text-white font-bold"
-              >
-                −
-              </button>
-
-              <span className="min-w-[24px] text-center text-white font-semibold">
-                {quantity}
-              </span>
-
-              <button
-                onClick={handleAdd}
-                className="w-8 h-8 rounded-md bg-neutral-800 hover:bg-neutral-700 text-white font-bold"
-              >
-                +
-              </button>
-            </div>
-
-            {/* ACTIONS */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                onClick={handleAddToCart}
-                className={`
-                  flex items-center justify-center gap-2
-                  px-4 py-2 rounded-lg font-semibold
-                  transition w-full sm:w-auto
-                  ${added
-                    ? "bg-green-600 text-white"
-                    : "bg-yellow-500 text-black hover:bg-yellow-400"}
-                `}
-              >
-                <FiShoppingCart />
-                {added ? "Added" : "Add to Cart"}
-              </motion.button>
-
-              <button className="flex items-center gap-1 text-sm text-neutral-400 hover:text-red-500">
-                <FiTrash2 /> Remove
-              </button>
-            </div>
-          </div>
+            <button onClick={handleAddToCart} className={`w-full mt-5 py-3 rounded-xl font-bold transition-all ${added ? "bg-green-600" : "bg-blue-600"}`}>
+               {added ? "Added!" : "Add to Cart"}
+            </button>
         </div>
+      </div>
 
-        {/* ===== FOOTER COPY BUTTON ===== */}
-        <div className="flex items-center justify-between p-4 border-t border-neutral-800 bg-neutral-950 mt-4">
-          <span className="text-sm text-neutral-400">E-commerce Cart</span>
-          <button
-            onClick={handleCopy}
-            className="flex items-center gap-1 text-neutral-400 hover:text-white text-sm"
-          >
-            <FiCopy /> {copied ? "Copied ✓" : "Copy"}
-          </button>
+      {/* 2. LIBRARY TOOLBAR */}
+      <div className="px-6 py-4 bg-black/40 border-t border-white/5 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+           <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
+           <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest font-bold">Component / Ecommerce_Cart_01</span>
         </div>
-      </motion.div>
+        
+        <button
+          onClick={handleCopy}
+          className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-xl text-xs font-bold text-white transition-all active:scale-95"
+        >
+          {copied ? <><FiCheck className="text-green-400" /> COPIED</> : <><FiCopy /> COPY FULL CODE</>}
+        </button>
+      </div>
     </div>
   );
 };

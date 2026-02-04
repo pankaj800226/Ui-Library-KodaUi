@@ -2,17 +2,13 @@ import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu as MenuIcon, Close } from "@mui/icons-material";
 import { motion, AnimatePresence } from "framer-motion";
+import { FiLayers } from "react-icons/fi";
 
 const Header = () => {
     const [sidebarOpen, setSidebarOpen] = React.useState(false);
     const location = useLocation();
 
     const links = [
-        { name: "About", path: "/about" },
-        { name: "About", path: "/about" },
-        { name: "About", path: "/about" },
-        { name: "About", path: "/about" },
-        { name: "About", path: "/about" },
         { name: "About", path: "/about" },
 
     ];
@@ -24,7 +20,7 @@ const Header = () => {
 
     /* ================= ESC Close ================= */
     React.useEffect(() => {
-        const close = (e:any) => e.key === "Escape" && setSidebarOpen(false);
+        const close = (e: any) => e.key === "Escape" && setSidebarOpen(false);
         window.addEventListener("keydown", close);
         return () => window.removeEventListener("keydown", close);
     }, []);
@@ -36,17 +32,15 @@ const Header = () => {
                 <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-3">
 
                     {/* ===== Logo ===== */}
-                    <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
-                        {/* Logo icon */}
-                        <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
-                            <span className="text-white font-bold text-xl">N</span>
+                    <Link to={'/'}>
+                    <div className="flex items-center gap-2">
+                        <div className="bg-blue-600 p-1.5 rounded-lg shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                            <FiLayers className="text-white" size={20} />
                         </div>
-
-                        {/* Brand name */}
-                        <span className="text-white font-bold text-xl tracking-wide">
-                            NovaKit
-                        </span>
+                        <h1 className="text-2xl font-black text-white tracking-tighter italic">Koda<span className="text-blue-500">UI</span></h1>
+                    </div>
                     </Link>
+                  
 
 
                     {/* ===== Desktop Nav ===== */}
