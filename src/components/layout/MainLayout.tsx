@@ -9,7 +9,7 @@ const MainLayout = () => {
       <Sidebar />
 
       {/* Content */}
-      <main className="flex-1 lg:ml-72 p-1">
+      <main className="lg:ml-70 w-full">
         <Outlet />
       </main>
 

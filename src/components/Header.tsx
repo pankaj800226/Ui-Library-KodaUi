@@ -24,7 +24,7 @@ const Header = () => {
 
     /* ================= ESC Close ================= */
     React.useEffect(() => {
-        const close = (e) => e.key === "Escape" && setSidebarOpen(false);
+        const close = (e:any) => e.key === "Escape" && setSidebarOpen(false);
         window.addEventListener("keydown", close);
         return () => window.removeEventListener("keydown", close);
     }, []);
@@ -36,12 +36,18 @@ const Header = () => {
                 <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-3">
 
                     {/* ===== Logo ===== */}
-                    <Link to="/" className="flex items-center gap-2">
-                        {/* <img src="logo.png" alt="logo" className="w-9" /> */}
-                        <span className="text-white font-semibold text-lg">
-                            UIBlocks
+                    <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
+                        {/* Logo icon */}
+                        <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
+                            <span className="text-white font-bold text-xl">N</span>
+                        </div>
+
+                        {/* Brand name */}
+                        <span className="text-white font-bold text-xl tracking-wide">
+                            NovaKit
                         </span>
                     </Link>
+
 
                     {/* ===== Desktop Nav ===== */}
                     <nav className="hidden md:flex items-center gap-8 text-sm">
@@ -53,8 +59,8 @@ const Header = () => {
                                     key={item.path}
                                     to={item.path}
                                     className={`relative group transition ${active
-                                            ? "text-white"
-                                            : "text-gray-300 hover:text-white"
+                                        ? "text-white"
+                                        : "text-gray-300 hover:text-white"
                                         }`}
                                 >
                                     {item.name}
@@ -126,8 +132,8 @@ const Header = () => {
                                             to={item.path}
                                             onClick={() => setSidebarOpen(false)}
                                             className={`px-4 py-3 rounded-xl text-sm transition ${active
-                                                    ? "bg-indigo-600 text-white"
-                                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                                ? "bg-indigo-600 text-white"
+                                                : "text-gray-400 hover:bg-white/5 hover:text-white"
                                                 }`}
                                         >
                                             {item.name}

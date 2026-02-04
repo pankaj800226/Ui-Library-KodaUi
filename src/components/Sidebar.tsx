@@ -47,9 +47,9 @@ const Sidebar = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const links: LinkItem[] = [
-    { name: "Cards", path: "/cards" },
+    { name: "Cards", path: "/card" },
     { name: "Forms", path: "/forms" },
-    { name: "E-commerce", path: "/ecommerce" },
+    { name: "Cart", path: "/cart" },
     { name: "Orders", path: "/orders" },
     { name: "Products", path: "/products" },
     { name: "Customers", path: "/customers" },
