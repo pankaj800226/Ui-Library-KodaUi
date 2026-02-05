@@ -49,7 +49,7 @@ const Sidebar = () => {
 
   const links: LinkItem[] = [
     { name: "Cards", path: "/card" },
-    { name: "Forms", path: "/forms" },
+    { name: "Forms", path: "/form" },
     { name: "Cart", path: "/cart" },
     { name: "Pricing Plane", path: "/price" },
 

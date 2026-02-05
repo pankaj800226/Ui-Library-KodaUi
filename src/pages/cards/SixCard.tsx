@@ -1,36 +1,45 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FiCopy, FiCheck, FiStar } from "react-icons/fi";
+import { FiCopy, FiCheck, FiStar, FiChevronRight } from "react-icons/fi";
 import { FaQuoteLeft } from "react-icons/fa";
 
-const SixCard = () => {
+const KodaReviewCard = () => {
   const [copied, setCopied] = useState(false);
 
-  // Full code for user to copy
   const sourceCode = `import { motion } from "framer-motion";
-import { FiStar, FiQuote } from "react-icons/fi";
+import { FiStar } from "react-icons/fi";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const TestimonialCard = () => {
   return (
-    <motion.div 
-      whileHover={{ scale: 1.02 }}
-      className="max-w-md bg-neutral-900 border border-white/5 p-8 rounded-[2.5rem] relative shadow-2xl"
-    >
-      <FiQuote className="absolute top-6 right-8 text-white/10 text-6xl" />
-      <div className="flex gap-1 mb-4">
-        {[...Array(5)].map((_, i) => <FiStar key={i} className="text-yellow-500 fill-yellow-500" size={14} />)}
-      </div>
-      <p className="text-white text-lg font-medium italic leading-relaxed mb-8">
-        "KodaUI is a game changer. The speed and design quality are unmatched in the current React ecosystem."
-      </p>
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center font-black text-white shadow-lg shadow-blue-600/20">AK</div>
-        <div>
-          <h4 className="text-white font-black text-sm uppercase tracking-widest">Alex Koda</h4>
-          <p className="text-neutral-500 text-xs font-bold uppercase tracking-tighter">Senior Dev</p>
+    <div className="min-h-[500px] flex items-center justify-center bg-transparent p-6">
+      <motion.div 
+        whileHover={{ y: -8 }}
+        className="w-full max-w-md bg-neutral-900 border border-white/10 rounded-[3rem] p-10 shadow-2xl relative overflow-hidden"
+      >
+        <FaQuoteLeft className="absolute top-10 right-10 text-white/5 text-8xl" />
+        
+        <div className="flex gap-1.5 mb-8 relative z-10">
+          {[...Array(5)].map((_, i) => (
+            <FiStar key={i} className="text-yellow-500 fill-yellow-500" size={18} />
+          ))}
         </div>
-      </div>
-    </motion.div>
+
+        <p className="text-white text-xl font-bold italic leading-relaxed mb-10 relative z-10">
+          "The most intuitive component library I've ever used. The attention to detail in every node is simply world-class."
+        </p>
+
+        <div className="flex items-center gap-5 border-t border-white/5 pt-8">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-600 flex items-center justify-center font-black text-white text-xl shadow-xl shadow-yellow-500/20">
+            RS
+          </div>
+          <div>
+            <h4 className="text-white font-black text-base uppercase tracking-widest">Rahul Sharma</h4>
+            <p className="text-neutral-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">Founding Engineer</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   );
 };`;
 
@@ -41,61 +50,68 @@ const TestimonialCard = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto my-12 bg-neutral-950 border border-white/5 rounded-[3rem] overflow-hidden shadow-2xl">
+    <div className="w-full max-w-5xl mx-auto my-12 bg-neutral-950 border border-white/5 rounded-[3rem] overflow-hidden shadow-2xl">
       
-      {/* --- PREVIEW AREA --- */}
-      <div className="p-10 md:p-20 flex justify-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-900/10 via-transparent to-transparent">
-        
+      {/* PREVIEW AREA */}
+      <div className="min-h-[650px] p-10 md:p-20 flex items-center justify-center bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-900/10 via-transparent to-transparent">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          whileHover={{ y: -5 }}
-          className="w-full max-w-md bg-neutral-900/50 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-10 shadow-2xl relative"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ y: -10 }}
+          className="w-full max-w-md bg-neutral-900/40 backdrop-blur-3xl border border-white/10 rounded-[3.5rem] p-12 shadow-2xl relative overflow-hidden"
         >
-          {/* Decorative Quote Icon */}
-          <FaQuoteLeft className="absolute top-8 right-10 text-white/5 text-7xl" />
+          <FaQuoteLeft className="absolute top-12 right-12 text-white/5 text-9xl pointer-events-none" />
 
-          {/* Star Ratings */}
-          <div className="flex gap-1.5 mb-6">
+          <div className="flex gap-2 mb-8 relative z-10">
             {[...Array(5)].map((_, i) => (
-              <FiStar key={i} className="text-yellow-500 fill-yellow-500" size={16} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <FiStar className="text-yellow-500 fill-yellow-500" size={20} />
+              </motion.div>
             ))}
           </div>
 
-          {/* Testimonial Text */}
-          <p className="text-white text-xl font-bold italic leading-relaxed tracking-tight mb-10 relative z-10">
-            "We built our entire MVP in just two weeks thanks to KodaUI. The components aren't just easy to use—they look like they were custom-made by a top-tier agency."
+          <p className="text-white text-2xl font-black italic tracking-tighter leading-snug mb-12 relative z-10">
+            "We built our entire MVP in just two weeks. KodaUI components look like they were custom-made by a top-tier agency."
           </p>
 
-          {/* User Info */}
-          <div className="flex items-center gap-5 border-t border-white/5 pt-8">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center font-black text-white text-xl italic shadow-xl shadow-yellow-500/10 cursor-pointer">
-              RS
+          <div className="flex items-center gap-6 pt-10 border-t border-white/5">
+            <div className="relative">
+              <div className="w-16 h-16 rounded-[1.8rem] bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center font-black text-white text-2xl italic shadow-2xl shadow-yellow-500/20 transform -rotate-3 hover:rotate-0 transition-transform cursor-pointer">
+                RS
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 border-4 border-neutral-900 rounded-full" />
             </div>
             <div>
-              <h4 className="text-white font-black text-base uppercase tracking-widest">Rahul Sharma</h4>
-              <p className="text-yellow-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">Founding Engineer</p>
+              <h4 className="text-white font-black text-lg italic tracking-tighter leading-none uppercase">Rahul Sharma</h4>
+              <p className="text-yellow-500 text-[10px] font-black uppercase tracking-[0.4em] mt-3">Founding Engineer</p>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* --- ACTION BAR (COPY CODE) --- */}
-      <div className="bg-white/5 px-10 py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="h-2 w-2 rounded-full bg-yellow-500 shadow-[0_0_10px_#eab308] animate-pulse" />
-          <p className="text-[10px] font-mono text-neutral-500 font-black uppercase tracking-[0.3em]">Module / Review_Card_v6</p>
+      {/* FOOTER ACTION BAR */}
+      <div className="px-10 py-8 bg-white/5 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-2xl">
+            <FiChevronRight className="text-yellow-500" size={20} />
+          </div>
+          <p className="text-[10px] font-mono text-neutral-600 font-black uppercase tracking-[0.5em]">Module / Review_Node_v6</p>
         </div>
 
         <button
           onClick={handleCopy}
-          className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white text-black px-10 py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-yellow-500 hover:text-white transition-all active:scale-95 cursor-pointer shadow-xl"
+          className="w-full md:w-auto bg-white text-black px-12 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-yellow-500 hover:text-white transition-all shadow-2xl active:scale-95 cursor-pointer"
         >
-          {copied ? <><FiCheck size={18} /> Copied Source!</> : <><FiCopy size={18} /> Copy Card Code</>}
+          {copied ? <><FiCheck /> LOGIC COPIED</> : <><FiCopy /> COPY FULL SOURCE</>}
         </button>
       </div>
     </div>
   );
 };
 
-export default SixCard;
+export default KodaReviewCard;

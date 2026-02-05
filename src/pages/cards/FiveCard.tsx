@@ -1,60 +1,53 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { FiCopy, FiCheck, FiUserPlus, FiUserCheck, FiTwitter, FiGithub, FiLinkedin } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+import {  FiUserPlus, FiUserCheck, FiTwitter, FiGithub, FiLinkedin, FiActivity } from "react-icons/fi";
 
 const KodaProfileCard = () => {
   const [following, setFollowing] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // FIXED: Now includes social icons and full layout in the copyable code
   const sourceCode = `import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FiUserPlus, FiUserCheck, FiTwitter, FiGithub, FiLinkedin } from "react-icons/fi";
 
 const ProfileCard = () => {
   const [following, setFollowing] = useState(false);
 
   return (
-    <motion.div 
-      whileHover={{ y: -8 }}
-      className="w-full max-w-sm bg-[#09090b] border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl relative"
-    >
-      {/* Cover */}
-      <div className="h-28 bg-gradient-to-br from-indigo-600/20 to-blue-500/10" />
+    <div className="min-h-screen flex items-center justify-center bg-[#050505] p-6">
+      <motion.div 
+        whileHover={{ y: -10 }}
+        className="w-full max-w-sm bg-neutral-900/50 border border-white/10 rounded-[3rem] overflow-hidden shadow-2xl backdrop-blur-xl"
+      >
+        <div className="h-32 bg-gradient-to-br from-indigo-600/30 to-blue-500/10" />
+        <div className="px-10 pb-12 flex flex-col items-center">
+          <div className="relative -mt-16 mb-6">
+            <img src="https://i.pravatar.cc/300" className="w-32 h-32 rounded-[2.5rem] border-[8px] border-neutral-900 object-cover shadow-2xl" />
+            <div className="absolute bottom-2 right-2 w-6 h-6 bg-emerald-500 border-4 border-neutral-900 rounded-full" />
+          </div>
+          <h3 className="text-3xl font-black text-white italic tracking-tighter">Jane Koda</h3>
+          <p className="text-indigo-400 text-[10px] font-black uppercase tracking-[0.3em] mt-2">Product Strategist</p>
+          
+          <div className="flex gap-4 my-8">
+            {[FiTwitter, FiGithub, FiLinkedin].map((Icon, i) => (
+              <button key={i} className="p-4 bg-white/5 hover:bg-indigo-600 text-neutral-400 hover:text-white rounded-2xl transition-all border border-white/5 active:scale-90 cursor-pointer">
+                <Icon size={18} />
+              </button>
+            ))}
+          </div>
 
-      <div className="px-8 pb-10 flex flex-col items-center">
-        {/* Avatar */}
-        <div className="relative -mt-14 mb-5">
-          <img
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400"
-            className="w-28 h-28 rounded-[2rem] border-[6px] border-[#09090b] object-cover shadow-2xl"
-          />
+          <button
+            onClick={() => setFollowing(!following)}
+            className={\`w-full py-5 rounded-[1.5rem] flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] transition-all cursor-pointer \${
+              following ? "bg-neutral-800 text-neutral-500" : "bg-white text-black hover:bg-indigo-600 hover:text-white shadow-xl shadow-white/5"
+            }\`}
+          >
+            {following ? <FiUserCheck size={20} /> : <FiUserPlus size={20} />}
+            {following ? "Following" : "Connect"}
+          </button>
         </div>
-
-        <h3 className="text-2xl font-black text-white italic tracking-tighter">Jane Koda</h3>
-        <p className="text-indigo-400 text-[10px] font-black uppercase tracking-widest mt-2">Product Strategist</p>
-
-        {/* Social Icons Block */}
-        <div className="flex gap-3 my-6">
-          {[FiTwitter, FiGithub, FiLinkedin].map((Icon, i) => (
-            <button key={i} className="p-3 bg-white/5 hover:bg-indigo-600 text-neutral-400 hover:text-white rounded-xl transition-all cursor-pointer border border-white/5">
-              <Icon size={16} />
-            </button>
-          ))}
-        </div>
-
-        {/* Follow Button */}
-        <button
-          onClick={() => setFollowing(!following)}
-          className={\`w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-xs uppercase tracking-widest transition-all cursor-pointer \${
-            following ? "bg-white/5 text-neutral-400" : "bg-white text-black hover:bg-indigo-600 hover:text-white"
-          }\`}
-        >
-          {following ? <FiUserCheck /> : <FiUserPlus />}
-          {following ? "Following" : "Connect"}
-        </button>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };`;
 
@@ -66,61 +59,89 @@ const ProfileCard = () => {
 
   return (
     <div className="w-full max-w-5xl mx-auto my-12 bg-neutral-950 border border-white/5 rounded-[3rem] overflow-hidden shadow-2xl">
-      {/* PREVIEW AREA (The visual part you see on screen) */}
-      <div className="p-10 md:p-20 flex justify-center bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent">
+      
+      {/* PREVIEW AREA */}
+      <div className="min-h-[750px] p-10 flex items-center justify-center bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-indigo-900/10 via-transparent to-transparent">
         <motion.div
           whileHover={{ y: -8 }}
-          className="w-full max-w-sm bg-neutral-900/40 backdrop-blur-3xl border border-white/10 rounded-[3rem] overflow-hidden shadow-2xl relative"
+          className="w-full max-w-sm bg-neutral-900/40 backdrop-blur-3xl border border-white/10 rounded-[3.5rem] overflow-hidden shadow-2xl relative"
         >
-          <div className="h-28 bg-gradient-to-br from-indigo-600/40 via-blue-500/20 to-transparent" />
+          {/* Cover with animated pattern */}
+          <div className="h-32 bg-gradient-to-br from-indigo-600/40 via-blue-500/20 to-transparent relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+          </div>
 
-          <div className="px-8 pb-10 flex flex-col items-center">
-            <div className="relative -mt-14 mb-5">
+          <div className="px-10 pb-12 flex flex-col items-center">
+            {/* Avatar Section */}
+            <div className="relative -mt-16 mb-6 group">
               <img
                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80"
                 alt="Avatar"
-                className="w-28 h-28 rounded-[2.5rem] border-[6px] border-[#0a0a0a] object-cover shadow-2xl"
+                className="w-32 h-32 rounded-[3rem] border-[10px] border-[#0a0a0a] object-cover shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute bottom-1 right-1 w-6 h-6 bg-emerald-500 border-4 border-[#0a0a0a] rounded-full" />
+              <motion.div 
+                animate={{ scale: [1, 1.2, 1] }} 
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="absolute bottom-2 right-2 w-7 h-7 bg-emerald-500 border-4 border-[#0a0a0a] rounded-full" 
+              />
             </div>
 
-            <h3 className="text-2xl font-black text-white italic tracking-tighter leading-none">Jane Koda</h3>
-            <p className="text-indigo-400 text-[10px] font-black uppercase tracking-[0.3em] mt-3">Product Strategist</p>
+            <h3 className="text-3xl font-black text-white italic tracking-tighter leading-none uppercase">Jane Koda</h3>
+            <div className="flex items-center gap-2 mt-4">
+               <FiActivity className="text-indigo-500" size={12} />
+               <p className="text-indigo-400 text-[10px] font-black uppercase tracking-[0.4em]">Product Strategist</p>
+            </div>
 
-            {/* Social Icons Included */}
-            <div className="flex gap-3 my-8">
+            {/* Interactive Social Grid */}
+            <div className="flex gap-4 my-10">
                {[FiTwitter, FiGithub, FiLinkedin].map((Icon, i) => (
-                 <button key={i} className="p-3 bg-white/5 hover:bg-indigo-600 hover:text-white text-neutral-400 rounded-xl transition-all cursor-pointer border border-white/5 active:scale-90">
-                    <Icon size={16} />
-                 </button>
+                 <motion.button 
+                   key={i} 
+                   whileHover={{ y: -4 }}
+                   className="p-4 bg-white/5 hover:bg-indigo-600 hover:text-white text-neutral-400 rounded-2xl transition-all cursor-pointer border border-white/5 shadow-lg active:scale-90"
+                 >
+                    <Icon size={20} />
+                 </motion.button>
                ))}
             </div>
 
             <button
               onClick={() => setFollowing(!following)}
-              className={`w-full py-5 rounded-[1.5rem] flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] transition-all cursor-pointer ${
-                following ? "bg-neutral-800 text-neutral-400" : "bg-white text-black hover:bg-indigo-600 hover:text-white"
+              className={`w-full py-5 rounded-[1.8rem] flex items-center justify-center gap-4 font-black text-[10px] uppercase tracking-[0.3em] transition-all cursor-pointer shadow-2xl ${
+                following ? "bg-neutral-800 text-neutral-500" : "bg-white text-black hover:bg-indigo-600 hover:text-white"
               }`}
             >
-              {following ? <FiUserCheck size={18} /> : <FiUserPlus size={18} />}
-              {following ? "Following" : "Connect"}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={following ? "following" : "not-following"}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="flex items-center gap-2"
+                >
+                  {following ? <FiUserCheck size={18} /> : <FiUserPlus size={18} />}
+                  {following ? "Following" : "Connect"}
+                </motion.div>
+              </AnimatePresence>
             </button>
           </div>
         </motion.div>
       </div>
 
       {/* FOOTER ACTION BAR */}
-      <div className="px-10 py-6 bg-white/5 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="h-2 w-2 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]" />
-          <p className="text-xs font-mono text-neutral-500 font-black uppercase tracking-[0.3em]">Module / Identity_Card_v5</p>
+      <div className="px-10 py-8 bg-white/5 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl">
+            <FiUserPlus className="text-indigo-400" size={20} />
+          </div>
+          <p className="text-[10px] font-mono text-neutral-600 font-black uppercase tracking-[0.5em]">Identity_Kernel / v.05</p>
         </div>
 
         <button
           onClick={handleCopy}
-          className="w-full md:w-auto flex items-center justify-center gap-2 bg-neutral-900 border border-white/10 px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all active:scale-95 cursor-pointer shadow-xl"
+          className="w-full md:w-auto bg-white text-black px-12 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all shadow-2xl active:scale-95 cursor-pointer"
         >
-          {copied ? <><FiCheck className="text-emerald-500" /> SOURCE COPIED</> : <><FiCopy /> COPY FULL COMPONENT</>}
+          {copied ? "IDENTITY LOGIC COPIED" : "COPY FULL COMPONENT"}
         </button>
       </div>
     </div>
