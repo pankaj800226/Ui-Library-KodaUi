@@ -9,7 +9,7 @@ const Header = () => {
     const location = useLocation();
 
     const links = [
-        { name: "About", path: "/about" },
+        { name: "About", path: "/dashboard" },
 
     ];
 

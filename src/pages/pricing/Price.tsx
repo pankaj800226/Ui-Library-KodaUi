@@ -1,4 +1,5 @@
 import OnePrice from "./OnePrice"
+import ThirdPrice from "./ThirdPrice"
 import TwoPrice from "./TwoPrice"
 
 const Price = () => {
@@ -11,6 +12,10 @@ const Price = () => {
 
             <div className="w=[90%]">
                 <TwoPrice />
+            </div>
+
+            <div className="w=[90%]">
+                <ThirdPrice />
             </div>
         </div>
     )

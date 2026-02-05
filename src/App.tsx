@@ -10,6 +10,10 @@ const Card = React.lazy(() => import('./pages/cards/Card'));
 const Cart = React.lazy(() => import('./pages/E-commerce/Cart'));
 const Price = React.lazy(() => import('./pages/pricing/Price'));
 const Forms = React.lazy(() => import('./pages/forms/Forms'));
+const Footer = React.lazy(() => import('./pages/footer/Footer'));
+const Button = React.lazy(() => import('./pages/button/Button'));
+const Input = React.lazy(() => import('./pages/input/Input'));
+
 
 
 // Router wrapper to handle hiding header
@@ -21,7 +25,10 @@ const AppRouter = () => {
     '/card',
     '/price',
     '/cart',
-    '/form'
+    '/form',
+    '/footer',
+    '/button',
+    '/input'
   ];  
 
   const hideHeader = hideHeaderRouter.some(route => location.pathname.startsWith(route));
@@ -42,7 +49,9 @@ const AppRouter = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/price" element={<Price />} />
             <Route path="/form" element={<Forms />} />
-
+            <Route path="/footer" element={<Footer />} />
+            <Route path="/button" element={<Button />} />
+            <Route path="/input" element={<Input />} />
           </Route>
         </Routes>
       </Suspense>

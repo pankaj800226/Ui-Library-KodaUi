@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FiArrowRight, FiCode, FiLayers, FiZap } from "react-icons/fi";
+import { FiArrowRight, FiLayers, FiZap } from "react-icons/fi";
 
 const KodaBanner = () => {
   return (
@@ -52,9 +52,9 @@ const KodaBanner = () => {
                 </button>
               </Link>
 
-              <button className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md font-bold text-white hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2 cursor-pointer">
+              {/* <button className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md font-bold text-white hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2 cursor-pointer">
                 <FiCode /> View Documentation
-              </button>
+              </button> */}
             </div>
 
             {/* Quick Metrics */}

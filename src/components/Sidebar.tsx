@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Divider from "@mui/material/Divider";
 import { FiLayers } from "react-icons/fi";
 
 /* =================================================
-   Types
+  Types
 ================================================= */
 
 type LinkItem = {
@@ -24,7 +24,7 @@ type SidebarContentProps = {
 };
 
 /* =================================================
-   Reusable Divider (MUI style)
+  Reusable Divider (MUI style)
 ================================================= */
 
 const SidebarDivider = ({ label }: SidebarDividerProps) => {
@@ -41,19 +41,25 @@ const SidebarDivider = ({ label }: SidebarDividerProps) => {
 };
 
 /* =================================================
-   Sidebar
+  Sidebar
 ================================================= */
 
 const Sidebar = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const links: LinkItem[] = [
-    { name: "Cards", path: "/card" },
-    { name: "Forms", path: "/form" },
+    { name: "Card", path: "/card" },
+    { name: "Form", path: "/form" },
+    { name: "Fotter", path: "/footer" },
+    { name: "button", path: "/button" },
+    { name: "Input", path: "/input" },
     { name: "Cart", path: "/cart" },
     { name: "Pricing Plane", path: "/price" },
 
   ];
+
+
+
 
   return (
     <>
@@ -62,21 +68,23 @@ const Sidebar = () => {
         onClick={() => setOpen(true)}
         className="lg:hidden fixed top-4 left-4 z-50 bg-indigo-600 p-2 rounded-xl text-white shadow-lg"
       >
-        <Menu size={22} />
+        <Menu size={25} />
       </button>
+
 
       {/* ===== Desktop Sidebar ===== */}
       <aside
         className="
-          hidden lg:flex flex-col
-          w-72 h-screen fixed left-0 top-0
-          bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950
-          border-r border-white/10
-          text-white p-6
-          overflow-y-auto
-        "
+            hidden lg:flex flex-col
+            w-72 h-screen fixed left-0 top-0
+            bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950
+            border-r border-white/10
+            text-white p-6
+            overflow-y-auto
+          "
       >
         <SidebarContent links={links} />
+
       </aside>
 
       {/* ===== Mobile Sidebar ===== */}
@@ -95,11 +103,11 @@ const Sidebar = () => {
             {/* drawer */}
             <motion.aside
               className="
-                lg:hidden fixed left-0 top-0 h-full w-72 z-50
-                bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950
-                border-r border-white/10 p-6 text-white
-                overflow-y-auto
-              "
+                  lg:hidden fixed left-0 top-0 h-full w-72 z-50
+                  bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950
+                  border-r border-white/10 p-6 text-white
+                  overflow-y-auto
+                "
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
@@ -123,18 +131,24 @@ const Sidebar = () => {
 export default Sidebar;
 
 /* =================================================
-   Sidebar Content
+  Sidebar Content
 ================================================= */
 
 const SidebarContent = ({ links, close }: SidebarContentProps) => {
+  const [search, setSearch] = useState('')
+
   const linkStyle = `
-    flex items-center gap-3
-    px-4 py-3 rounded-xl
-    text-gray-300
-    hover:bg-indigo-600/30
-    hover:text-white
-    transition
-  `;
+      flex items-center gap-3
+      px-4 py-3 rounded-xl
+      text-gray-300
+      hover:bg-indigo-600/30
+      hover:text-white
+      transition
+    `;
+
+  const searchFilter = links.filter((s) =>
+    s.name.toLowerCase().includes(search.toLocaleLowerCase())
+  )
 
   return (
     <>
@@ -147,10 +161,24 @@ const SidebarContent = ({ links, close }: SidebarContentProps) => {
         </div>
       </Link>
 
+      {/* searching  */}
+      <div className="relative mt-5 group mx-auto w-full max-w-[220px]">
+        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+          <Search size={16} className="text-gray-500 group-focus-within:text-indigo-400 transition-colors" />
+        </div>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full bg-white/5 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all"
+        />
+      </div>
+
       <SidebarDivider label="Components" />
 
       <nav className="flex flex-col gap-2">
-        {links.slice(0, 2).map((item) => (
+        {searchFilter.slice(0, 5).map((item) => (
           <Link
             key={item.path}
             to={item.path}
@@ -165,7 +193,7 @@ const SidebarContent = ({ links, close }: SidebarContentProps) => {
       <SidebarDivider label="E-commerce cart" />
 
       <nav className="flex flex-col gap-2">
-        {links.slice(2, 3).map((item) => (
+        {searchFilter.slice(5, 6).map((item) => (
           <Link
             key={item.path}
             to={item.path}
@@ -180,7 +208,7 @@ const SidebarContent = ({ links, close }: SidebarContentProps) => {
       <SidebarDivider label="Pricing" />
 
       <nav className="flex flex-col gap-2">
-        {links.slice(3).map((item) => (
+        {searchFilter.slice(6, 7).map((item) => (
           <Link
             key={item.path}
             to={item.path}

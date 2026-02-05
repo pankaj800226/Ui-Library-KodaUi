@@ -49,7 +49,9 @@ const ProfileCard = () => {
       </motion.div>
     </div>
   );
-};`;
+};
+
+`;
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(sourceCode);
