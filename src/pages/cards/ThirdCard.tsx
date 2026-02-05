@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FiShoppingCart, FiCopy, FiCheck, FiTag } from "react-icons/fi";
+import { FiShoppingCart, FiTag } from "react-icons/fi";
 
 const ProductCard = () => {
   const [liked, setLiked] = useState(false);
