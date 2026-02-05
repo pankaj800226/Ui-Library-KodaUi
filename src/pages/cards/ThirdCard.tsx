@@ -87,7 +87,7 @@ export default ProductCard;`;
           {/* Image Section */}
           <div className="relative h-64 sm:h-72 overflow-hidden group">
             <img
-              src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=900&auto=format&fit=crop&q=60"
+              src="logo.png"
               alt="Product"
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
             />

@@ -82,7 +82,7 @@ export default ModernCartItem;`;
           >
             <div className="relative overflow-hidden rounded-[2rem]">
               <img
-                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+                src="logo.png"
                 className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <button

@@ -64,7 +64,7 @@ export default ImageCard;`;
           {/* Image Section with Overlay */}
           <div className="relative group overflow-hidden h-56">
             <img
-              src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=900&auto=format&fit=crop&q=60"
+              src="logo.png"
               alt="Card Image"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />

@@ -7,7 +7,6 @@ type Product = {
   id: number;
   name: string;
   price: string;
-  image: string;
 };
 
 const ShowOfComponent: React.FC = () => {
@@ -15,9 +14,9 @@ const ShowOfComponent: React.FC = () => {
   const [activeDate, setActiveDate] = useState(14);
 
   const products: Product[] = [
-    { id: 1, name: "Neural Kick", price: "₹8,999", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
-    { id: 2, name: "Nexus Watch", price: "₹14,499", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30" },
-    { id: 3, name: "Cyber Bag", price: "₹5,200", image: "https://rukminim2.flixcart.com/image/612/612/xif0q/backpack/8/i/a/11-high-quality-casual-unisex-travel-office-school-backpack-14-original-imahgqxfwgak3czb.jpeg?q=70" },
+    { id: 1, name: "Neural Kick", price: "₹8,999" },
+    { id: 2, name: "Nexus Watch", price: "₹14,499" },
+    { id: 3, name: "Cyber Bag", price: "₹5,200", },
   ];
 
   const getQty = (id: number): number => qtyMap[id] ?? 1;
@@ -32,7 +31,7 @@ const ShowOfComponent: React.FC = () => {
 
       {/* Header */}
       <div className="w-full text-center mb-20 px-6 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-black uppercase tracking-widest mb-6"
@@ -43,15 +42,15 @@ const ShowOfComponent: React.FC = () => {
           Ready-made <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Production</span> Blocks
         </h2>
         <p className="text-neutral-400 max-w-2xl mx-auto text-lg leading-relaxed">
-          Premium React components built with atomic design principles. 
+          Premium React components built with atomic design principles.
           Just copy the logic, paste the style, and ship.
         </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
+
         {/* --- 1. THE MODERN CARD (Span 4) --- */}
-        <motion.div 
+        <motion.div
           whileHover={{ y: -5 }}
           className="lg:col-span-4 group relative overflow-hidden rounded-[2.5rem] bg-neutral-900/40 border border-white/5 p-8 backdrop-blur-3xl transition-all hover:border-blue-500/50"
         >
@@ -72,7 +71,7 @@ const ShowOfComponent: React.FC = () => {
         </motion.div>
 
         {/* --- 2. AUTH FORM (Span 4) --- */}
-        <motion.div 
+        <motion.div
           whileHover={{ y: -5 }}
           className="lg:col-span-4 group rounded-[2.5rem] bg-neutral-900/40 border border-white/5 p-8 backdrop-blur-3xl transition-all hover:border-purple-500/50"
         >
@@ -97,27 +96,27 @@ const ShowOfComponent: React.FC = () => {
         </motion.div>
 
         {/* --- 3. CALENDAR (Span 4) --- */}
-        <motion.div 
+        <motion.div
           whileHover={{ y: -5 }}
           className="lg:col-span-4 group rounded-[2.5rem] bg-neutral-900/40 border border-white/5 p-8 backdrop-blur-3xl transition-all hover:border-orange-500/50"
         >
           <h3 className="font-black text-sm uppercase tracking-widest text-neutral-500 mb-8">Schedule</h3>
           <div className="bg-neutral-950 rounded-[2rem] p-6 border border-white/5">
-             <div className="flex justify-between items-center mb-4 px-2">
-                <span className="text-sm font-bold">February 2026</span>
-                <FiCalendar className="text-orange-500" />
-             </div>
-             <div className="grid grid-cols-7 gap-2">
-                {[...Array(21)].map((_, i) => (
-                  <button 
-                    key={i} 
-                    onClick={() => setActiveDate(i + 1)}
-                    className={`h-8 w-8 text-[10px] font-bold rounded-lg transition-all ${activeDate === i + 1 ? 'bg-orange-500 text-white' : 'hover:bg-white/5 text-neutral-500'}`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
-             </div>
+            <div className="flex justify-between items-center mb-4 px-2">
+              <span className="text-sm font-bold">February 2026</span>
+              <FiCalendar className="text-orange-500" />
+            </div>
+            <div className="grid grid-cols-7 gap-2">
+              {[...Array(21)].map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveDate(i + 1)}
+                  className={`h-8 w-8 text-[10px] font-bold rounded-lg transition-all ${activeDate === i + 1 ? 'bg-orange-500 text-white' : 'hover:bg-white/5 text-neutral-500'}`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -129,7 +128,7 @@ const ShowOfComponent: React.FC = () => {
               <p className="text-neutral-500 text-sm mt-1">Interactive inventory and quantity management logic.</p>
             </div>
             <button className="px-6 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-bold hover:bg-white/10 transition-all flex items-center gap-2">
-               <FiCode /> View All Gallery Styles
+              <FiCode /> View All Gallery Styles
             </button>
           </div>
 
@@ -141,7 +140,7 @@ const ShowOfComponent: React.FC = () => {
                 className="bg-neutral-950 rounded-[2.5rem] p-6 border border-white/5 hover:border-blue-500/30 transition-all shadow-2xl"
               >
                 <div className="relative group overflow-hidden rounded-2xl mb-6">
-                  <img src={product.image} alt={product.name} className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={'logo.png'} alt={product.name} className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute top-4 right-4 h-8 w-8 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center">
                     <FiShoppingCart size={14} />
                   </div>

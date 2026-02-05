@@ -93,7 +93,7 @@ export default CartItem;`;
         <div className="w-full max-w-md bg-neutral-900 border border-neutral-800 rounded-3xl p-5 shadow-2xl relative">
             <div className="flex gap-5">
               <img
-                src="https://images.unsplash.com/photo-1668371679302-a8ec781e876e"
+                src="logo.png"
                 className="w-24 h-24 rounded-2xl object-cover border border-white/5"
               />
               <div className="flex-1 flex flex-col justify-between">
